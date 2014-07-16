@@ -1,0 +1,32 @@
+= form_for(@scribble, :html => { :class => "form-horizontal" }) do |f|
+  - if @scribble.errors.any?
+    .alert.alert-danger.alert-dismissable
+      button.close type="button" data-dismiss="alert" aria-hidden="true" 
+        | &times;
+      h4= "#{pluralize(@scribble.errors.count,"error")} prohibited this scribble from being saved:"
+      ul
+        - @scribble.errors.full_messages.each do |msg|
+          li= msg
+  .form-group
+    = f.label :title, :class => "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :title, :class => "form-control"
+  .form-group
+    = f.label :tags, :class => "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :tags, :class => "form-control"
+  .form-group
+    = f.label :content, :class => "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :content, :class => "form-control"
+  .form-group
+    = f.label :created, :class => "col-sm-2 control-label"
+    .col-sm-10
+      = f.date_select :created, :class => "form-control"
+  .form-group
+    = f.label :published, :class => "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :published, :class => "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit :class => "btn btn-primary"

@@ -1,0 +1,30 @@
+.page-header
+  = link_to scribbles_path, :class => 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_scribble_path(@scribble), :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show scribble
+dl.dl-horizontal
+  dt
+    | Title:
+  dd
+    = @scribble.title
+  dt
+    | Tags:
+  dd
+    = @scribble.tags
+  dt
+    | Content:
+  dd
+    = @scribble.content
+  dt
+    | Created:
+  dd
+    = @scribble.created
+  dt
+    | Published:
+  dd
+    = @scribble.published

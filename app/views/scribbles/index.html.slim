@@ -1,0 +1,43 @@
+.page-header
+  = link_to new_scribble_path, :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Scribble
+  h1
+    | Listing scribbles
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Title
+        th
+          | Tags
+        th
+          | Content
+        th
+          | Created
+        th
+          | Published
+        th
+        th
+        th
+    tbody
+      - @scribbles.each do | scribble |
+        tr
+          td
+            = scribble.title
+          td
+            = scribble.tags
+          td
+            = scribble.content
+          td
+            = scribble.created
+          td
+            = scribble.published
+          td
+            = link_to 'Show', scribble
+          td
+            = link_to 'Edit', edit_scribble_path(scribble) 
+          td
+            = link_to 'Destroy', scribble, method: :delete, data: { confirm: 'Are you sure?' } 
