@@ -35,6 +35,7 @@ html
             li
               a href="#contact"
                 | Contact
+          / FS 140716: added login status to navbar
           p.navbar-text.pull-right
             - if user_signed_in?
               strong
@@ -44,19 +45,12 @@ html
             - else
               = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
               |  | 
-              = link_to "Login", new_user_session_path, :class => 'navbar-link'
+              = link_to "Sign in", new_user_session_path, :class => 'navbar-link'
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do
           button.close type="button" data-dismiss="alert" aria-hidden="true"
             | &times;
           = msg
-      / FS: added devise alerts
-      - if notice
-        p.alert.alert-success
-          = notice
-      - if alert
-        p.alert.alert-danger
-          = alert
       = yield
 
