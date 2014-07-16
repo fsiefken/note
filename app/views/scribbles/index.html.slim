@@ -14,30 +14,19 @@
         th
           | Tags
         th
-          | Content
-        th
           | Created
-        th
-          | Published
-        th
         th
         th
     tbody
       - @scribbles.each do | scribble |
         tr
           td
-            = scribble.title
+            = link_to scribble.title, scribble
           td
             = scribble.tags
-          td
-            = scribble.content
-          td
+          td 
             = scribble.created
-          td
-            = scribble.published
-          td
-            = link_to 'Show', scribble
-          td
-            = link_to 'Edit', edit_scribble_path(scribble) 
-          td
-            = link_to 'Destroy', scribble, method: :delete, data: { confirm: 'Are you sure?' } 
+          td 
+            = link_to 'Edit', edit_scribble_path(scribble), :class => "btn btn-primary"
+          td 
+            = link_to 'Delete', scribble, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-primary" 
