@@ -18,7 +18,8 @@
   .form-group
     = f.label :content, :class => "col-sm-2 control-label"
     .col-sm-10
-      = f.text_area :content, :class => "form-control"
+      #epiceditor
+        = f.text_area :content, :class => "form-control", :style => "height:275px"  
   .form-group
     = f.label :created, :class => "col-sm-2 control-label"
     .col-sm-10
