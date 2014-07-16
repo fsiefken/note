@@ -23,7 +23,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to "Project name", "#", :class => "navbar-brand"
+          = link_to "Scribbles", "/scribbles", :class => "navbar-brand"
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li.active
@@ -35,10 +35,28 @@ html
             li
               a href="#contact"
                 | Contact
+          p.navbar-text.pull-right
+            - if user_signed_in?
+              strong
+              = link_to current_user.email, edit_user_registration_path, :class => 'navbar-link'
+              |  | 
+              = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+            - else
+              = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+              |  | 
+              = link_to "Login", new_user_session_path, :class => 'navbar-link'
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do
           button.close type="button" data-dismiss="alert" aria-hidden="true"
             | &times;
           = msg
+      / FS: added devise alerts
+      - if notice
+        p.alert.alert-success
+          = notice
+      - if alert
+        p.alert.alert-danger
+          = alert
       = yield
+
