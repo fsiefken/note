@@ -2,6 +2,17 @@ Rails.application.routes.draw do
   devise_for :users
   resources :scribbles
 
+  resources :users do
+    resources :scribbles
+  end
+
+  #add new revert route for paper_trail versioning
+  post "versions/:id/revert" => "versions#revert", :as =>
+       "revert_version"
+  resources :scribbles 
+  root :to => "scribbles#index"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -28,6 +39,8 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+
+
 
   # Example resource route with sub-resources:
   #   resources :products do

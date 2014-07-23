@@ -4,7 +4,9 @@ class ScribblesController < ApplicationController
   # GET /scribbles
   # GET /scribbles.json
   def index
-    @scribbles = Scribble.all
+    #@scribbles = Scribble.all
+    #show posts from current user
+    @scribbles = current_user.scribbles
   end
 
   # GET /scribbles/1
@@ -25,6 +27,9 @@ class ScribblesController < ApplicationController
   # POST /scribbles.json
   def create
     @scribble = Scribble.new(scribble_params)
+    
+    #link scribble to user
+    @scribble.user_id = current_user.id
 
     respond_to do |format|
       if @scribble.save

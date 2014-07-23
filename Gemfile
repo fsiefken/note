@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 gem 'puma'
 gem 'devise'
-gem 'cancancan'
+gem 'pundit'
+gem 'paper_trail'
 gem 'slim-rails'
 gem 'bootstrap-generators'
 

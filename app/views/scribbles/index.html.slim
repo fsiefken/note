@@ -10,6 +10,8 @@
     thead
       tr
         th
+          | User
+        th
           | Title
         th
           | Tags
@@ -20,6 +22,8 @@
     tbody
       - @scribbles.each do | scribble |
         tr
+          td
+            = scribble.user_id
           td
             = link_to scribble.title, scribble
           td
