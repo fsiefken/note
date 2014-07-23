@@ -47,7 +47,11 @@ class ScribblesController < ApplicationController
   def update
     respond_to do |format|
       if @scribble.update(scribble_params)
-        format.html { redirect_to @scribble, notice: 'Scribble was successfully updated.' }
+        undo_link = view_context.link_to("undo", 
+          revert_version_path(@scribble.versions.last),
+          :method => :post) 
+        format.html { 
+          redirect_to @scribble, notice: "Scribble was successfully updated. #{undo_link}" }
         format.json { render :show, status: :ok, location: @scribble }
       else
         format.html { render :edit }
@@ -61,7 +65,7 @@ class ScribblesController < ApplicationController
   def destroy
     @scribble.destroy
     respond_to do |format|
-      format.html { redirect_to scribbles_url, notice: 'Scribble was successfully destroyed.' }
+      format.html { redirect_to scribbles_url, notice: 'Scribble was successfully deleted. #{undo_link}' }
       format.json { head :no_content }
     end
   end
@@ -76,4 +80,11 @@ class ScribblesController < ApplicationController
     def scribble_params
       params.require(:scribble).permit(:title, :tags, :content, :created, :published)
     end
+      
+    def undo_link  
+      view_context.link_to("undo",
+        revert_version_path(@scribble.versions.scoped.last),
+        :method => :post)
+  end
+
 end
