@@ -1,0 +1,19 @@
+* DONE je kunt alleen eigen scribbles inzien
+@scribbles = current_user.scribbles 
+* PENDING je kunt alleen eigen scribbles kunt aanpassen 
+gem pundit
+** PENDING authorize
+** TODO test
+* PENDING versiebeheer op een scribble  
+gem papertrail
+** TODO test, what's the issue with undo_link
+** is versioning view with update needed? 
+
+* PENDING je scribble met andere users die een scribble account heeft kunt delen
+** PENDING check list
+** TODO serialize input to hash
+** TODO deserialize shared_with to array
+** TODO style input shared_with, tags with tag styles
+** different method with user to user table?
+* TODO :bug: markdown editor broken
+* TODO [#A] :bug: shared_with, created_at not saved

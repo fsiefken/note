@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20140723145247) do
   create_table "scribbles", force: true do |t|
     t.string   "user_id"
     t.string   "title"
+    t.string   "shared_with"
     t.string   "tags"
     t.text     "content"
     t.date     "created"

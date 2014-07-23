@@ -5,8 +5,13 @@ class ScribblesController < ApplicationController
   # GET /scribbles.json
   def index
     #@scribbles = Scribble.all
-    #show posts from current user
-    @scribbles = current_user.scribbles
+    #show posts from current user OR posts that are shared with the current user
+    @scribbles = current_user.scribbles 
+
+  end
+
+  def shared_with
+    #read shared_with from scribble, turn array of users, lookup in usertable
   end
 
   # GET /scribbles/1
@@ -18,6 +23,7 @@ class ScribblesController < ApplicationController
   def new
     @scribble = Scribble.new
   end
+
 
   # GET /scribbles/1/edit
   def edit
