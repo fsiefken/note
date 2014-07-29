@@ -1,12 +1,13 @@
 class ScribblesController < ApplicationController
-  before_action :set_scribble, only: [:show, :edit, :update, :destroy]
+
+  #before_action :set_scribble, only: [:show, :edit, :update, :destroy]
 
   # GET /scribbles
   # GET /scribbles.json
   def index
-    #@scribbles = Scribble.all
+    @scribbles = Scribble.all
     #show posts from current user OR posts that are shared with the current user
-    @scribbles = current_user.scribbles 
+    #@scribbles = current_user.scribbles 
 
   end
 
@@ -17,6 +18,8 @@ class ScribblesController < ApplicationController
   # GET /scribbles/1
   # GET /scribbles/1.json
   def show
+     @scribble = Scribble.find(params[:id])
+     authorize @scribble
   end
 
   # GET /scribbles/new
@@ -27,6 +30,8 @@ class ScribblesController < ApplicationController
 
   # GET /scribbles/1/edit
   def edit
+     @scribble = Scribble.find(params[:id])
+     authorize @scribble
   end
 
   # POST /scribbles
@@ -50,14 +55,12 @@ class ScribblesController < ApplicationController
 
   # PATCH/PUT /scribbles/1
   # PATCH/PUT /scribbles/1.json
+  
   def update
+    @scribble = Scribble.find(params[:id])
     respond_to do |format|
       if @scribble.update(scribble_params)
-        undo_link = view_context.link_to("undo", 
-          revert_version_path(@scribble.versions.last),
-          :method => :post) 
-        format.html { 
-          redirect_to @scribble, notice: "Scribble was successfully updated. #{undo_link}" }
+        format.html { redirect_to @scribble, notice: 'Scribble was successfully updated.' }
         format.json { render :show, status: :ok, location: @scribble }
       else
         format.html { render :edit }
