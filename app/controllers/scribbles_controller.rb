@@ -41,7 +41,7 @@ class ScribblesController < ApplicationController
     
     #link scribble to user
     @scribble.user_id = current_user.id
-
+    @scribble.created = DateTime.now
     respond_to do |format|
       if @scribble.save
         format.html { redirect_to @scribble, notice: 'Scribble was successfully created.' }

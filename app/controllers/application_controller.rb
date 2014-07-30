@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
 
   def user_not_authorized
-    flash[:error] = "You are not authorized"
+    flash[:error] = "You are not authorized to view or edit this"
     redirect_to root_path
   end
 
