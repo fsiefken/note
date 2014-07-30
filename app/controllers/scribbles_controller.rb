@@ -20,6 +20,7 @@ class ScribblesController < ApplicationController
   def show
      @scribble = Scribble.find(params[:id])
      authorize @scribble
+     @versions = PaperTrail::Version.order('created_at DESC')
   end
 
   # GET /scribbles/new
@@ -94,6 +95,11 @@ class ScribblesController < ApplicationController
       view_context.link_to("undo",
         revert_version_path(@scribble.versions.scoped.last),
         :method => :post)
-  end
+    end
+
+    # paper_trail history method
+    def history
+      @versions = PaperTrail::Version.order('created_at DESC')
+    end
 
 end

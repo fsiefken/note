@@ -36,3 +36,19 @@ dl.dl-horizontal
     | Published:
   dd
     = @scribble.published
+
+
+  h1 
+    | versions
+dl.dl-horizontal
+  ul
+    - @versions.each do |version|
+      li
+        = l(version.created_at, format: "%-d.%m.%Y %H:%M:%S %Z")
+        br/
+        | Event ID: #{version.id}
+
+        br/
+        div
+          | More info:
+          pre= version.object
