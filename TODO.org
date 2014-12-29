@@ -9,7 +9,7 @@ gem papertrail
 ** TODO test, what's the issue with undo_link
 ** is versioning view with update needed? 
 
-* PENDING je scribble met andere users die een scribble account heeft kunt delen
+* PENDING je scribble met andere users die een scribble account hebben delen
 ** PENDING check list
 ** TODO serialize input to hash
 ** TODO deserialize shared_with to array
